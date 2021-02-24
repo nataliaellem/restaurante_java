@@ -65,7 +65,14 @@ public class Mesa {
     }
 
     // Método que incrementa 1 ao número de pedidos
+
     public void updateNumPedidos(){
         this.numPedidos++;
+    }
+
+    // Método que decrementa 1 de TOTAL_MESAS_ABERTAS quando uma mesa é fechada
+
+    public void decrementaTotalMesas(){
+        Mesa.TOTAL_MESAS_ABERTAS = TOTAL_MESAS_ABERTAS - 1;
     }
 }

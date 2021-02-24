@@ -18,6 +18,7 @@ public class Gerente extends Funcionario{
             p = null;
         }
         mesa.setNumClientes(0);
+        mesa.decrementaTotalMesas();
     }
 
     public void visualizarPedidos(Mesa mesa){

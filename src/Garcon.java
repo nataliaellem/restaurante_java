@@ -18,6 +18,7 @@ public class Garcon extends Funcionario {
             p = null;
         }
         mesa.setNumClientes(0);
+        mesa.decrementaTotalMesas();
     }
 
     public void fazerPedido(Mesa mesa, Pedido pedido){
