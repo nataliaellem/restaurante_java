@@ -38,5 +38,10 @@ public class Restaurante {
         CRIAR TESTES PARA TODOS OS METODOS (simular o restaurante)
          */
 
+        Pedido p = new Pedido("prato do dia", 30);
+        Pedido p2 = new Pedido("pizza", 40);
+        Pedido p3 = new Pedido("salada", 40);
+
+        System.out.println(Pedido.getTotalPedidos());
     }
 }

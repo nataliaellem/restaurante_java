@@ -14,13 +14,17 @@ public class Mesa {
     // funcionário responsável pela mesa
     private Funcionario responsavel;
 
+    // Total de pedidos feitos pela mesa
+    private int numPedidos;
+
     // Total de mesas abertas (static)
     private static int TOTAL_MESAS_ABERTAS;
 
-    public Mesa(int numMesa, int numClientes, Funcionario responsavel){
+    public Mesa(int numMesa, int numClientes){
         this.numMesa = numMesa;
         this.numClientes = numClientes;
         this.responsavel = responsavel;
+        this.numPedidos = 0;
         this.historicoPedidos = new Pedido[100];
 
         TOTAL_MESAS_ABERTAS++;
@@ -41,14 +45,27 @@ public class Mesa {
     }
 
     public Funcionario getResponsavel() {
-        return responsavel;
+        return this.responsavel;
     }
 
     public void setResponsavel(Funcionario responsavel) {
         this.responsavel = responsavel;
     }
 
+    public int getNumPedidos(){
+        return this.numPedidos;
+    }
+
+    public Pedido[] getHistoricoPedidos(){
+        return this.historicoPedidos;
+    }
+
     public static int getTotalMesasAbertas() {
         return TOTAL_MESAS_ABERTAS;
+    }
+
+    // Método que incrementa 1 ao número de pedidos
+    public void updateNumPedidos(){
+        this.numPedidos++;
     }
 }

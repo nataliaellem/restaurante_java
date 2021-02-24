@@ -6,7 +6,24 @@ public class Gerente extends Funcionario{
 
     /* Métodos */
 
-    //void visualizarPedidos(Mesa mesa);
+    @Override
+    public Mesa abrirMesa(int numClientes, int numMesa) {
+        Mesa novaMesa = new Mesa(numClientes, numMesa);
+        novaMesa.setResponsavel(this);
+        return novaMesa;
+    }
+
+    @Override
+    public void fecharMesa(Mesa mesa) {
+        for(Pedido p : mesa.getHistoricoPedidos()){
+            p = null;
+        }
+        mesa.setNumClientes(0);
+    }
+
+    void visualizarPedidos(Mesa mesa){
+        System.out.println();
+    }
 
 
 }
