@@ -20,7 +20,7 @@ public class Mesa {
     // Total de mesas abertas (static)
     private static int TOTAL_MESAS_ABERTAS;
 
-    public Mesa(int numMesa, int numClientes){
+    public Mesa(int numMesa, int numClientes, Funcionario responsavel){
         this.numMesa = numMesa;
         this.numClientes = numClientes;
         this.responsavel = responsavel;

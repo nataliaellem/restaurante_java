@@ -8,8 +8,7 @@ public class Gerente extends Funcionario{
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
-        Mesa novaMesa = new Mesa(numClientes, numMesa);
-        novaMesa.setResponsavel(this);
+        Mesa novaMesa = new Mesa(numClientes, numMesa, this);
         return novaMesa;
     }
 
