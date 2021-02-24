@@ -18,6 +18,17 @@ public class Pedido {
         TOTAL_PEDIDOS++;
     }
 
+    // Métodos
+
+    @Override
+    public String toString() {
+        String pedidoStr =
+                "Descrição: " + this.descricao + "\n" +
+                "Valor: " + this.valor;
+        return pedidoStr;
+    }
+
+
     /* Getters/Setters */
 
     public String getDescricao() {

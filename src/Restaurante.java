@@ -38,10 +38,18 @@ public class Restaurante {
         CRIAR TESTES PARA TODOS OS METODOS (simular o restaurante)
          */
 
+        Gerente g1 = new Gerente("Natália", 123);
+        Garcon ga1 = new Garcon("Maria", 321);
+
         Pedido p = new Pedido("prato do dia", 30);
         Pedido p2 = new Pedido("pizza", 40);
         Pedido p3 = new Pedido("salada", 40);
 
-        System.out.println(Pedido.getTotalPedidos());
+        Mesa mesa1 = ga1.abrirMesa(01, 2);
+        ga1.fazerPedido(mesa1, p);
+        ga1.fazerPedido(mesa1, p2);
+        ga1.fazerPedido(mesa1, p3);
+
+        g1.visualizarPedidos(mesa1);
     }
 }

@@ -20,8 +20,20 @@ public class Gerente extends Funcionario{
         mesa.setNumClientes(0);
     }
 
-    void visualizarPedidos(Mesa mesa){
-        System.out.println();
+    public void visualizarPedidos(Mesa mesa){
+        System.out.println("=== Pedidos da mesa "+ mesa.getNumMesa() + " ===\n");
+        double conta = 0;
+        Pedido[] pedidos = mesa.getHistoricoPedidos();
+            for (int i = 0; i <= mesa.getNumPedidos(); i++){
+                if (pedidos[i] != null){
+                    int numeroDoPedido = i+1;
+                    System.out.println("Pedido "+ numeroDoPedido);
+                    System.out.println(pedidos[i].toString() + "\n");
+                    conta += pedidos[i].getValor();
+                }
+            }
+            System.out.println("Total da conta da mesa: " + conta);
+
     }
 
 
