@@ -60,7 +60,7 @@ public class Mesa {
         return this.historicoPedidos;
     }
 
-    public static int getTotalMesasAbertas() {
+    public int getTotalMesasAbertas() {
         return TOTAL_MESAS_ABERTAS;
     }
 

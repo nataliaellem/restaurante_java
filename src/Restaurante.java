@@ -46,10 +46,17 @@ public class Restaurante {
         Pedido p3 = new Pedido("salada", 40);
 
         Mesa mesa1 = ga1.abrirMesa(01, 2);
+
         ga1.fazerPedido(mesa1, p);
         ga1.fazerPedido(mesa1, p2);
         ga1.fazerPedido(mesa1, p3);
 
         g1.visualizarPedidos(mesa1);
+        System.out.println("Total de mesas abertas: "+ mesa1.getTotalMesasAbertas());
+
+        ga1.fecharMesa(mesa1);
+        g1.visualizarPedidos(mesa1);
+        System.out.println("Total de mesas abertas: "+ mesa1.getTotalMesasAbertas());
+
     }
 }
