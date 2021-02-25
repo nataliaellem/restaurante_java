@@ -6,6 +6,15 @@ public class Gerente extends Funcionario{
 
     /* Métodos */
 
+    public void imprimeInformacoes(){
+        if (super.getNome() != null && super.getCodigo() != 0){
+            System.out.println("\n==== Dados do funcionário ====");
+            System.out.println("Cargo: gerente");
+            System.out.println("Nome: " + super.getNome());
+            System.out.println("Código: " + super.getCodigo() + "\n");
+        }
+    }
+
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
         Mesa novaMesa = new Mesa(numClientes, numMesa, this);

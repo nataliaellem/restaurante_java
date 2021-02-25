@@ -16,6 +16,8 @@ public abstract class Funcionario {
 
     /* Métodos */
 
+    public abstract void imprimeInformacoes();
+
     public abstract Mesa abrirMesa(int numClientes, int numMesa);
 
     public abstract void fecharMesa(Mesa mesa);
