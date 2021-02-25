@@ -38,24 +38,35 @@ public class Restaurante {
         CRIAR TESTES PARA TODOS OS METODOS (simular o restaurante)
          */
 
+
         // O restaurante tem 50 mesas, por isso será criado um array de objetos Mesa de tamanho 50
 
         Mesa[] mesas = new Mesa[50];
-         
 
-        Gerente g1 = new Gerente("Natália", 123);
-        Garcon ga1 = new Garcon("Maria", 321);
 
-        Pedido p = new Pedido("prato do dia", 30);
-        Pedido p2 = new Pedido("pizza", 40);
-        Pedido p3 = new Pedido("salada", 40);
+        // O restaurante terá 10 garçons
 
-        Mesa mesa1 = ga1.abrirMesa(01, 2);
-        ga1.fazerPedido(mesa1, p);
-        ga1.fazerPedido(mesa1, p2);
-        ga1.fazerPedido(mesa1, p3);
+        Garcon[] garcons = new Garcon[10];
+        garcons[0] = new Garcon("G1", 11);
+        garcons[0] = new Garcon("G2", 12);
+        garcons[0] = new Garcon("G3", 13);
+        garcons[0] = new Garcon("G4", 14);
+        garcons[0] = new Garcon("G5", 15);
+        garcons[0] = new Garcon("G6", 16);
+        garcons[0] = new Garcon("G7", 17);
+        garcons[0] = new Garcon("G8", 18);
+        garcons[0] = new Garcon("G9", 19);
+        garcons[0] = new Garcon("G10", 20);
 
-        g1.visualizarPedidos(mesa1);
+
+        // O restaurante terá 2 gerentes
+
+        Gerente[] gerentes = new Gerente[2];
+
+        gerentes[0] = new Gerente("José", 1);
+        gerentes[1] = new Gerente("Maria", 2);
+
+        
     
     }
 }
