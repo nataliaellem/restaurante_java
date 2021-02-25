@@ -8,11 +8,12 @@ public class Gerente extends Funcionario{
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
-        if (Mesa.TOTAL_MESAS_ABERTAS >= 50){
+        Mesa novaMesa = new Mesa(numClientes, numMesa, this);
+        int totalMesas = Mesa.getTotalMesasAbertas();
+        if (totalMesas >= 50){
             System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
             return null;
         }
-        Mesa novaMesa = new Mesa(numClientes, numMesa, this);
         return novaMesa;
     }
 

@@ -65,7 +65,7 @@ public class Mesa {
         return this.historicoPedidos;
     }
 
-    public int getTotalMesasAbertas() {
+    public static int getTotalMesasAbertas() {
         return TOTAL_MESAS_ABERTAS;
     }
 
@@ -77,7 +77,7 @@ public class Mesa {
 
     // Método que decrementa 1 de TOTAL_MESAS_ABERTAS quando uma mesa é fechada
 
-    public void decrementaTotalMesas(){
+    public static void decrementaTotalMesas(){
         Mesa.TOTAL_MESAS_ABERTAS = TOTAL_MESAS_ABERTAS - 1;
     }
 }
