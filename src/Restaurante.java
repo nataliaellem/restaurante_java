@@ -38,6 +38,11 @@ public class Restaurante {
         CRIAR TESTES PARA TODOS OS METODOS (simular o restaurante)
          */
 
+        // O restaurante tem 50 mesas, por isso será criado um array de objetos Mesa de tamanho 50
+
+        Mesa[] mesas = new Mesa[50];
+         
+
         Gerente g1 = new Gerente("Natália", 123);
         Garcon ga1 = new Garcon("Maria", 321);
 

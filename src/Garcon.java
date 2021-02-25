@@ -18,20 +18,20 @@ public class Garcon extends Funcionario {
 
     @Override
     public void fecharMesa(Mesa mesa) {
-
         if (mesa != null){
             // Apenas o garçon responsável pela mesa poderá fechá-la
             if (this.equals(mesa.responsavel)){
-                Pedido[] pedidos = mesa.getHistoricoPedidos();
-                for(Pedido p : pedidos){
-                    p = null;
+                for(int i = 0; i < mesa.getNumPedidos(); i++){
+                    mesa.getHistoricoPedidos()[i] = null;
                 }
                 mesa.setNumClientes(0);
+                mesa.setResponsavel(null);
                 mesa.decrementaTotalMesas();
             } else {
                 System.out.println("Garçon não é o responsável pela mesa.");
             }
         }
+    
     }
 
     public void fazerPedido(Mesa mesa, Pedido pedido){
