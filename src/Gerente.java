@@ -8,13 +8,18 @@ public class Gerente extends Funcionario{
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
+        if (Mesa.TOTAL_MESAS_ABERTAS >= 50){
+            System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
+            return null;
+        }
         Mesa novaMesa = new Mesa(numClientes, numMesa, this);
         return novaMesa;
     }
 
     @Override
     public void fecharMesa(Mesa mesa) {
-        for(Pedido p : mesa.getHistoricoPedidos()){
+        Pedido[] pedidios = mesa.getHistoricoPedidos();
+        for(Pedido p : pedidios){
             p = null;
         }
         mesa.setNumClientes(0);
@@ -35,6 +40,13 @@ public class Gerente extends Funcionario{
             }
             System.out.println("Total da conta da mesa: " + conta);
 
+    }
+
+    // Um gerente tem permissão de fechar e visualizar pedidos de qualquer mesa
+    // E o gerente pode mudar o responsável por alguma mesa
+
+    public void mudarResponsavel(Garcon novoResponsavel, Mesa mesa){
+        mesa.setResponsavel(novoResponsavel);
     }
 
 

@@ -8,24 +8,43 @@ public class Garcon extends Funcionario {
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
+        if (Mesa.TOTAL_MESAS_ABERTAS >= 50){
+            System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
+            return null;
+        }
         Mesa novaMesa = new Mesa(numClientes, numMesa, this);
         return novaMesa;
     }
 
     @Override
     public void fecharMesa(Mesa mesa) {
-        for(Pedido p : mesa.getHistoricoPedidos()){
-            p = null;
+
+        if (mesa != null){
+            // Apenas o garçon responsável pela mesa poderá fechá-la
+            if (this.equals(mesa.responsavel)){
+                Pedido[] pedidos = mesa.getHistoricoPedidos();
+                for(Pedido p : pedidos){
+                    p = null;
+                }
+                mesa.setNumClientes(0);
+                mesa.decrementaTotalMesas();
+            } else {
+                System.out.println("Garçon não é o responsável pela mesa.");
+            }
         }
-        mesa.setNumClientes(0);
-        mesa.decrementaTotalMesas();
     }
 
     public void fazerPedido(Mesa mesa, Pedido pedido){
-        Pedido[] historico = mesa.getHistoricoPedidos();
-        int numPedidos = mesa.getNumPedidos();
-        historico[numPedidos] = pedido;
-        mesa.updateNumPedidos();
+        // Apenas o garçon responsável pela mesa poderá fazer pedidos
+        if (this.equals(mesa.responsavel)){
+            Pedido[] historico = mesa.getHistoricoPedidos();
+            int numPedidos = mesa.getNumPedidos();
+            historico[numPedidos] = pedido;
+            mesa.updateNumPedidos();
+
+        } else {
+            System.out.println("Garçon não é o responsável pela mesa.");
+        }
     }
 
 }

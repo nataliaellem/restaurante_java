@@ -27,7 +27,12 @@ public class Mesa {
         this.numPedidos = 0;
         this.historicoPedidos = new Pedido[100];
 
-        TOTAL_MESAS_ABERTAS++;
+        // O restaurante possui apenas 50 mesas, não será possível deixar abertas mais do que 50 mesas
+        if (TOTAL_MESAS_ABERTAS < 50){
+            TOTAL_MESAS_ABERTAS++;
+        } else {
+            System.out.println("Não há mais mesas disponíveis.");
+        }
     }
 
     /* Getters/Setters */

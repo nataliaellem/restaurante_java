@@ -51,5 +51,6 @@ public class Restaurante {
         ga1.fazerPedido(mesa1, p3);
 
         g1.visualizarPedidos(mesa1);
+    
     }
 }
