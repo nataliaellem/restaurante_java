@@ -17,11 +17,11 @@ public class MenuConsole {
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 0:
-                    System.out.println("Encerrando");
+                    System.out.println("Encerrando...");
                     break;
                 case 1:
                     System.out.println("Digite a senha (Dica: a senha é 1): ");
-                    senha = scanner.next();// Obs: senha facilitada, poderia ser um nextInt
+                    senha = scanner.next();// Obs: senha facilitada, nesse caso poderia ser um nextInt
                     if(senha.equals("1")){
                         menuGarcon();
                     }else{
@@ -30,7 +30,7 @@ public class MenuConsole {
                     break;
                 case 2:
                     System.out.println("Digite a senha (Dica: a senha é 2): ");
-                    senha = scanner.next();// Obs: senha facilitada, poderia ser um nextInt
+                    senha = scanner.next();// Obs: senha facilitada, nesse caso poderia ser um nextInt
                     if(senha.equals("2")){
                         menuGarcon();
                     }else{
@@ -47,7 +47,7 @@ public class MenuConsole {
     public void menuGerente() {
         Scanner scanner = new Scanner(System.in);
         int opcao = -1;
-
+        //Gerente gerente = new Gerente("default", 100);
 
         while (opcao != 0) {
             System.out.println("====== MENU GERENTE ======");
@@ -64,8 +64,9 @@ public class MenuConsole {
                     break;
                 case 1:
                     // ver pedidos
+                    // necessário receber parâmetros por algum lugar, seja pelo Scanner(teclado), seja por referência(já criados)
                     // ex: gerente[codGerente].visualizarPedidos(mesas[numMesa]);
-                    // ex: Gerente x = gerente; Mesa y = mesa; x.visualizarPedidos(y);
+                    // ex: FuncaoQueRecebePeloScanner(gerente, mesa); Gerente x = gerente; Mesa y = mesa; x.visualizarPedidos(y);
                     break;
                 case 2:
                     // Abrir uma mesa

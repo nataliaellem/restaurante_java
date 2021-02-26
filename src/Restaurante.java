@@ -66,10 +66,8 @@ public class Restaurante {
         /* --------------------------------------------------------------------------------------------------- */
 
         /* Trecho de testes do menu. Ainda em implementação */
-        /* Falta:
-            Autenticação: Um garçon não pode abrir o menu do gerente e vice-versa
-                Ideia: Receber um int senha para garçon e para gerente
-        */
+        /* Provavelmente será transferido para a main */
+
         MenuConsole m = new MenuConsole();
 
         m.iniciar();
