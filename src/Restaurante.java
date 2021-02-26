@@ -23,7 +23,7 @@ public class Restaurante {
         mesas[3] = garcon[7].abrirMesa(1, 2);
         mesas[3] = gerente[0].abrirMesa(4, 3);
 
-        // Teste: Gerente 0 abre a mesa, mas gerente 1 reatribui o responsável
+        // Teste: Verificando que qualquer gerente pode reatribui o responsável da mesa
         gerente[1].mudarResponsavel(garcon[1], mesas[3]);
 
         // Inicializar os pedidos e depois atribuí-los a uma mesa usando fazerPedido(); torna a variável TOTAL_PEDIDOS inútil, já que representa a quantidade de pedidos instanciados. Mesmo que existam pedidos iguais, eles não são contabilizados.
@@ -37,10 +37,10 @@ public class Restaurante {
         gerente[0].visualizarPedidos(mesas[2]);
         gerente[0].visualizarPedidos(mesas[3]);
 
-        // Teste: Gerente 1 fecha a mesa aberta pelo gerente 0
+        // Teste: Qualquer gerente deve poder fechar qualquer mesa aberta
         gerente[1].fecharMesa(mesas[3]);
 
-        // Teste: Conferir se a mesa foi realmente fechada
+        // Teste: Conferiindo se a mesa foi realmente fechada
         System.out.println("\nMesa " + mesas[3].getNumMesa() + "\nnº pedidos: " + mesas[3].getNumPedidos() + "\tnº clientes: " + mesas[3].getNumClientes() + "\tresponsavel: " + mesas[3].getResponsavel());
         gerente[0].visualizarPedidos(mesas[3]);
         System.out.println("\n");
