@@ -29,9 +29,8 @@ public class Gerente extends Funcionario{
 
     @Override
     public void fecharMesa(Mesa mesa) {
-        Pedido[] pedidos = mesa.getHistoricoPedidos();
-        for(Pedido p : pedidos){
-            p = null;
+        for(int i = 0; i < mesa.getNumPedidos(); i++){
+            mesa.getHistoricoPedidos()[i] = null;
         }
         mesa.resetNumPedidos();
         mesa.setNumClientes(0);
@@ -45,7 +44,7 @@ public class Gerente extends Funcionario{
             double conta = 0;
             Pedido[] pedidos = mesa.getHistoricoPedidos();
 
-            System.out.println("=== Pedidos da mesa " + mesa.getNumMesa() + " ===");
+            System.out.println("\n===== Pedidos da mesa " + mesa.getNumMesa() + " =====");
             System.out.println("Responsável pela mesa: " + mesa.getResponsavel().getNome());
             System.out.println("Número de clientes: " + mesa.getNumClientes() + "\n");
             for (int i = 0; i <= mesa.getNumPedidos(); i++) {
@@ -55,6 +54,7 @@ public class Gerente extends Funcionario{
                     conta += pedidos[i].getValor();
                 }
             }
+            System.out.println("Total de pedidos: " + mesa.getNumPedidos());
             System.out.println("Total da conta da mesa: " + String.format("%.2f", conta));
         }
         else{

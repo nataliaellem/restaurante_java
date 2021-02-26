@@ -8,7 +8,7 @@ public class MenuConsole {
         String senha;
 
         while (opcao != 0) {
-            System.out.println("====== RESTAURANTE FOMINHA ======");
+            System.out.println("====== RESTAURANTE ======");
             System.out.println("[1] Garçon");
             System.out.println("[2] Gerente");
             System.out.println("[0] Sair");

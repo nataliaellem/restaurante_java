@@ -20,7 +20,7 @@ public class Mesa {
     // Limite de mesas abertas/instanciadas
     public static int LIMITE_MESAS = 50;
 
-    // Quantidade de mesas abertas no restaurante
+    // Quantidade de mesas abertas (com clientes) no restaurante
     private static int MESAS_ABERTAS;
 
     // Total geral de mesas abertas
