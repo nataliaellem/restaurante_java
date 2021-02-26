@@ -2,13 +2,13 @@ public class Pedido {
 
     /* Atributos */
 
-    // descrição do pedido
+    // Descrição do pedido
     private String descricao;
 
-    // valor do pedido
+    // Valor do pedido
     private double valor;
 
-    // total geral de pedidos (static)
+    // Total geral de pedidos realizados
     private static int TOTAL_PEDIDOS;
 
     public Pedido(String descricao, double valor){
@@ -18,33 +18,18 @@ public class Pedido {
         TOTAL_PEDIDOS++;
     }
 
-    // Métodos
+    /* Métodos */
 
     @Override
     public String toString() {
         String pedidoStr =
                 "Descrição: " + this.descricao + "\n" +
-                "Valor: " + this.valor;
+                "Valor: " + String.format("%.2f", this.valor);
         return pedidoStr;
-    }
-
-
-    /* Getters/Setters */
-
-    public String getDescricao() {
-        return this.descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public double getValor() {
         return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
     }
 
     public static int getTotalPedidos() {

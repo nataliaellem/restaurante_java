@@ -2,17 +2,16 @@ public abstract class Funcionario {
 
     /* Atributos */
 
-    // nome
+    // Nome do funcionário
     private String nome;
 
-    // codigo
+    // Código do funcionário
     private int codigo;
 
     public Funcionario(String nome, int codigo){
         this.nome = nome;
         this.codigo = codigo;
     }
-
 
     /* Métodos */
 
@@ -28,16 +27,8 @@ public abstract class Funcionario {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public int getCodigo() {
         return codigo;
     }
 
-    // O código do funcionário pode mudar?
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
 }

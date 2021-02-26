@@ -9,7 +9,7 @@ public class Garcon extends Funcionario {
     public void imprimeInformacoes(){
         if (super.getNome() != null && super.getCodigo() != 0){
             System.out.println("\n==== Dados do funcionário ====");
-            System.out.println("Cargo: garçom");
+            System.out.println("Cargo: Garçom");
             System.out.println("Nome: " + super.getNome());
             System.out.println("Código: " + super.getCodigo() + "\n");
         }
@@ -17,12 +17,13 @@ public class Garcon extends Funcionario {
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
-        if (Mesa.getTotalMesasAbertas() >= 50){
+        if (Mesa.getMesasAbertas() >= Mesa.LIMITE_MESAS){
             System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
             return null;
+        }else {
+            Mesa novaMesa = new Mesa(numClientes , numMesa, this);
+            return novaMesa;
         }
-        Mesa novaMesa = new Mesa(numClientes, numMesa, this);
-        return novaMesa;
     }
 
     @Override
@@ -33,6 +34,7 @@ public class Garcon extends Funcionario {
                 for(int i = 0; i < mesa.getNumPedidos(); i++){
                     mesa.getHistoricoPedidos()[i] = null;
                 }
+                mesa.resetNumPedidos();
                 mesa.setNumClientes(0);
                 mesa.setResponsavel(null);
                 mesa.decrementaTotalMesas();

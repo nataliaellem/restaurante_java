@@ -2,40 +2,41 @@ public class Mesa {
 
     /* Atributos */
 
-    // nº da mesa
+    // Número identificador da mesa
     private int numMesa;
 
-    // nº de clientes na mesa
+    // Número de clientes na mesa
     private int numClientes;
 
-    // histórico de pedidos da mesa (vetor 100)
+    // Histórico de pedidos da mesa
     private Pedido[] historicoPedidos;
 
-    // funcionário responsável pela mesa
+    // Funcionário responsável pela mesa
     private Funcionario responsavel;
 
     // Total de pedidos feitos pela mesa
     private int numPedidos;
 
-    // Total de mesas abertas (static)
+    // Limite de mesas abertas/instanciadas
+    public static int LIMITE_MESAS = 50;
+
+    // Quantidade de mesas abertas no restaurante
+    private static int MESAS_ABERTAS;
+
+    // Total geral de mesas abertas
     private static int TOTAL_MESAS_ABERTAS;
 
-    public Mesa(int numMesa, int numClientes, Funcionario responsavel){
+    public Mesa(int numClientes, int numMesa, Funcionario responsavel){
         this.numMesa = numMesa;
         this.numClientes = numClientes;
         this.responsavel = responsavel;
         this.numPedidos = 0;
-        this.historicoPedidos = new Pedido[100];
-
-        // O restaurante possui apenas 50 mesas, não será possível deixar abertas mais do que 50 mesas
-        if (TOTAL_MESAS_ABERTAS < 50){
-            TOTAL_MESAS_ABERTAS++;
-        } else {
-            System.out.println("Não há mais mesas disponíveis.");
-        }
+        this.historicoPedidos = new Pedido[100]; // Máximo de 100 pedidos por mesa
+        MESAS_ABERTAS++;
+        TOTAL_MESAS_ABERTAS++;
     }
 
-    /* Getters/Setters */
+    /* Métodos */
 
     public int getNumMesa() {
         return numMesa;
@@ -57,10 +58,6 @@ public class Mesa {
         this.responsavel = responsavel;
     }
 
-    public int getNumPedidos(){
-        return this.numPedidos;
-    }
-
     public Pedido[] getHistoricoPedidos(){
         return this.historicoPedidos;
     }
@@ -69,15 +66,26 @@ public class Mesa {
         return TOTAL_MESAS_ABERTAS;
     }
 
-    // Método que incrementa 1 ao número de pedidos
+    public static int getMesasAbertas() {
+        return MESAS_ABERTAS;
+    }
 
+    // Método auxiliar no fechamento de uma mesa que decrementa 1 no total de mesas abertas
+    public void decrementaTotalMesas(){
+        MESAS_ABERTAS --;
+    }
+
+    public int getNumPedidos(){
+        return this.numPedidos;
+    }
+
+    // Método que incrementa 1 ao número de pedidos
     public void updateNumPedidos(){
         this.numPedidos++;
     }
 
-    // Método que decrementa 1 de TOTAL_MESAS_ABERTAS quando uma mesa é fechada
-
-    public static void decrementaTotalMesas(){
-        Mesa.TOTAL_MESAS_ABERTAS = TOTAL_MESAS_ABERTAS - 1;
+    // Método auxiliar no fechamento de uma mesa que zera o nº de pedidos da mesa
+    public void resetNumPedidos() {
+        this.numPedidos = 0;
     }
 }

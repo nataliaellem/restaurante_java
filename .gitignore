@@ -1,0 +1,13 @@
+.idea/.name
+out
+src/.idea
+src/out
+.idea/libraries/KotlinJavaRuntime.xml
+.idea/misc.xml
+.idea/kotlinc.xml
+*.xml
+*.xml
+.idea/modules.xml
+00. Trabalho 1 - Restaurante.iml
+*.class
+
