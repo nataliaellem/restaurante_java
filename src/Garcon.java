@@ -17,7 +17,13 @@ public class Garcon extends Funcionario {
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
-        if (Mesa.getMesasAbertas() >= Mesa.LIMITE_MESAS){
+        for (int i = 0; i < Mesa.getTotalMesasAbertas(); i++){
+            if (Mesa.getNumerosMesasOcupadas()[i] == numMesa){
+                System.out.println("Número de mesa já aberta.");
+                return null;
+            }
+        }
+        if (Mesa.getMesasAbertas() >= Mesa.getLimiteMesas()){
             System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
             return null;
         }else {
@@ -31,13 +37,15 @@ public class Garcon extends Funcionario {
         if (mesa != null){
             // Apenas o garçon responsável pela mesa poderá fechá-la
             if (this.equals(mesa.getResponsavel())){
-                for(int i = 0; i < mesa.getNumPedidos(); i++){
-                    mesa.getHistoricoPedidos()[i] = null;
+                Pedido[] pedidos = mesa.getHistoricoPedidos();
+                for(Pedido p : pedidos){
+                    p = null;
                 }
-                mesa.resetNumPedidos();
                 mesa.setNumClientes(0);
                 mesa.setResponsavel(null);
                 mesa.decrementaTotalMesas();
+                mesa.updateNumerosMesasOcupadas(mesa.getNumMesa());
+
             } else {
                 System.out.println("Garçon não é o responsável pela mesa.");
             }
@@ -49,9 +57,14 @@ public class Garcon extends Funcionario {
         // Apenas o garçon responsável pela mesa poderá fazer pedidos
         if (this.equals(mesa.getResponsavel())){
             Pedido[] historico = mesa.getHistoricoPedidos();
-            int numPedidos = mesa.getNumPedidos();
-            historico[numPedidos] = pedido;
-            mesa.updateNumPedidos();
+            int i = 0;
+            for(Pedido p : historico){
+                if (p == null){
+                    historico[i] = pedido;
+                    break;
+                }
+                i++;
+            }
 
         } else {
             System.out.println("Garçon não é o responsável pela mesa.");

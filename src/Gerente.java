@@ -17,8 +17,14 @@ public class Gerente extends Funcionario{
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
+        for (int i = 0; i < Mesa.getTotalMesasAbertas(); i++){
+            if (Mesa.getNumerosMesasOcupadas()[i] == numMesa){
+                System.out.println("Número de mesa já aberta.");
+                return null;
+            }
+        }
         int totalMesas = Mesa.getMesasAbertas();
-        if (totalMesas >= Mesa.LIMITE_MESAS){
+        if (totalMesas >= Mesa.getLimiteMesas()){
             System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
             return null;
         }else {
@@ -29,13 +35,14 @@ public class Gerente extends Funcionario{
 
     @Override
     public void fecharMesa(Mesa mesa) {
-        for(int i = 0; i < mesa.getNumPedidos(); i++){
-            mesa.getHistoricoPedidos()[i] = null;
+        Pedido[] pedidos = mesa.getHistoricoPedidos(); 
+        for(Pedido p : pedidos){
+            p = null;
         }
-        mesa.resetNumPedidos();
         mesa.setNumClientes(0);
         mesa.setResponsavel(null);
         mesa.decrementaTotalMesas();
+        mesa.updateNumerosMesasOcupadas(mesa.getNumMesa());
     }
 
 
@@ -47,14 +54,16 @@ public class Gerente extends Funcionario{
             System.out.println("\n===== Pedidos da mesa " + mesa.getNumMesa() + " =====");
             System.out.println("Responsável pela mesa: " + mesa.getResponsavel().getNome());
             System.out.println("Número de clientes: " + mesa.getNumClientes() + "\n");
-            for (int i = 0; i <= mesa.getNumPedidos(); i++) {
-                if (pedidos[i] != null) {
-                    System.out.println("Pedido " + (i+1));
-                    System.out.println(pedidos[i].toString() + "\n");
-                    conta += pedidos[i].getValor();
+            int totalPedidos = 0;
+            for (Pedido p : pedidos) {
+                if (p != null) {
+                    System.out.println("Pedido " + (totalPedidos+1));
+                    System.out.println(p.toString() + "\n");
+                    conta += p.getValor();
+                    totalPedidos++;
                 }
             }
-            System.out.println("Total de pedidos: " + mesa.getNumPedidos());
+            System.out.println("Total de pedidos: " + totalPedidos);
             System.out.println("Total da conta da mesa: " + String.format("%.2f", conta));
         }
         else{
@@ -70,7 +79,7 @@ public class Gerente extends Funcionario{
 
     public void verEstatisticas(){
         System.out.println("\n======== Estatísticas ========");
-        System.out.println("Quantidade de mesas usadas: " + Mesa.getMesasAbertas() + "/" + Mesa.LIMITE_MESAS);
+        System.out.println("Quantidade de mesas usadas: " + Mesa.getMesasAbertas() + "/" + Mesa.getLimiteMesas());
         System.out.println("Total de mesas abertas: " + Mesa.getTotalMesasAbertas());
         System.out.println("Total de pedidos realizados: " + Pedido.getTotalPedidos());
     }
