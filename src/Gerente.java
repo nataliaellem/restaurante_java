@@ -8,8 +8,8 @@ public class Gerente extends Funcionario{
 
     public void imprimeInformacoes(){
         if (super.getNome() != null && super.getCodigo() != 0){
-            System.out.println("\n==== Dados do funcionário ====");
-            System.out.println("Cargo: gerente");
+            System.out.println("\n====== Dados do funcionário ======");
+            System.out.println("Cargo: Gerente");
             System.out.println("Nome: " + super.getNome());
             System.out.println("Código: " + super.getCodigo() + "\n");
         }
@@ -17,54 +17,62 @@ public class Gerente extends Funcionario{
 
     @Override
     public Mesa abrirMesa(int numClientes, int numMesa) {
-        Mesa novaMesa = new Mesa(numClientes, numMesa, this);
-        int totalMesas = Mesa.getTotalMesasAbertas();
-        if (totalMesas >= 50){
+        int totalMesas = Mesa.getMesasAbertas();
+        if (totalMesas >= Mesa.LIMITE_MESAS){
             System.out.println("Total de mesas excedido. Mesa não pode ser aberta.");
             return null;
+        }else {
+            Mesa novaMesa = new Mesa(numClientes, numMesa, this);
+            return novaMesa;
         }
-        return novaMesa;
     }
 
     @Override
     public void fecharMesa(Mesa mesa) {
-        Pedido[] pedidios = mesa.getHistoricoPedidos();
-        for(Pedido p : pedidios){
-            p = null;
+        for(int i = 0; i < mesa.getNumPedidos(); i++){
+            mesa.getHistoricoPedidos()[i] = null;
         }
+        mesa.resetNumPedidos();
         mesa.setNumClientes(0);
         mesa.setResponsavel(null);
         mesa.decrementaTotalMesas();
     }
 
 
-        public void visualizarPedidos(Mesa mesa){
-        if(mesa.getResponsavel() != null) {
-            System.out.println("=== Pedidos da mesa " + mesa.getNumMesa() + " ===");
-            System.out.println("Responsável pela mesa: " + mesa.getResponsavel().getNome() + "\n");
+    public void visualizarPedidos(Mesa mesa){
+        if(mesa != null && mesa.getResponsavel() != null) {
             double conta = 0;
             Pedido[] pedidos = mesa.getHistoricoPedidos();
+
+            System.out.println("\n===== Pedidos da mesa " + mesa.getNumMesa() + " =====");
+            System.out.println("Responsável pela mesa: " + mesa.getResponsavel().getNome());
+            System.out.println("Número de clientes: " + mesa.getNumClientes() + "\n");
             for (int i = 0; i <= mesa.getNumPedidos(); i++) {
                 if (pedidos[i] != null) {
-                    int numeroDoPedido = i + 1;
-                    System.out.println("Pedido " + numeroDoPedido);
+                    System.out.println("Pedido " + (i+1));
                     System.out.println(pedidos[i].toString() + "\n");
                     conta += pedidos[i].getValor();
                 }
             }
-            System.out.println("Total da conta da mesa: " + conta);
+            System.out.println("Total de pedidos: " + mesa.getNumPedidos());
+            System.out.println("Total da conta da mesa: " + String.format("%.2f", conta));
         }
         else{
             System.out.println("Mesa vazia");
         }
-
     }
 
     // Um gerente tem permissão de fechar e visualizar pedidos de qualquer mesa
     // E o gerente pode mudar o responsável por alguma mesa
-
     public void mudarResponsavel(Garcon novoResponsavel, Mesa mesa){
         mesa.setResponsavel(novoResponsavel);
+    }
+
+    public void verEstatisticas(){
+        System.out.println("\n======== Estatísticas ========");
+        System.out.println("Quantidade de mesas usadas: " + Mesa.getMesasAbertas() + "/" + Mesa.LIMITE_MESAS);
+        System.out.println("Total de mesas abertas: " + Mesa.getTotalMesasAbertas());
+        System.out.println("Total de pedidos realizados: " + Pedido.getTotalPedidos());
     }
 
 

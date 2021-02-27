@@ -1,3 +1,8 @@
+.idea/.name
+out
+src/.idea
+src/out
+*.xml
+00. Trabalho 1 - Restaurante.iml
 *.class
-*.iml
-.idea
+
