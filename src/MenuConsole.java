@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class MenuConsole {
 
     private static int NUM_FUNCIONARIOS;
-    private static int MAX_FUNCIONARIOS = 20;   // Vai estourar quando passar o limite
-    private static int MAX_MESAS = 50;          // Vai estourar quando passar o limite
+    private static int MAX_FUNCIONARIOS = 20;
+    private static int MAX_MESAS = 50;
 
     Mesa[] mesas = new Mesa[MAX_MESAS];
     Funcionario[] funcionarios = new Funcionario[MAX_FUNCIONARIOS];
@@ -60,7 +60,7 @@ public class MenuConsole {
 
     public void menuGerente(String nome, int codigo) {
         Scanner scanner = new Scanner(System.in);
-        int opcao = -1, nClientes, nMesa;
+        int opcao = -1, nClientes, nMesa, code;
         Gerente gerente = null;
 
         if(autenticar(nome, codigo) != null && autenticar(nome, codigo) instanceof Gerente) {
@@ -76,6 +76,7 @@ public class MenuConsole {
             System.out.println("[2] Abrir uma mesa");
             System.out.println("[3] Fechar uma mesa");
             System.out.println("[4] Ver estatísticas");
+            System.out.println("[5] Ver dados do funcionário");
             System.out.println("[0] Voltar");
             System.out.print("Opção: ");
 
@@ -107,6 +108,9 @@ public class MenuConsole {
                 case 4:
                     gerente.verEstatisticas();
                     break;
+                case 5:
+                    gerente.imprimeInformacoes();
+                    break;
                 default:
                     System.out.println("Opção inválida.");
             }
@@ -132,6 +136,7 @@ public class MenuConsole {
             System.out.println("[1] Fazer um pedido");
             System.out.println("[2] Abrir uma mesa");
             System.out.println("[3] Fechar uma mesa");
+            System.out.println("[4] Ver dados do funcionário");
             System.out.println("[0] Voltar");
             System.out.print("Opção: ");
 
@@ -162,6 +167,9 @@ public class MenuConsole {
                     System.out.print("Digite o nº da mesa: ");
                     nMesa = scanner.nextInt();
                     garcon.fecharMesa(mesas[nMesa-1]);
+                    break;
+                case 4:
+                    garcon.imprimeInformacoes();
                     break;
                 default:
                     System.out.println("Opção inválida.");
