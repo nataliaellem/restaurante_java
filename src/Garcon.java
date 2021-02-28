@@ -53,21 +53,25 @@ public class Garcon extends Funcionario {
     
     }
 
-    public void fazerPedido(Mesa mesa, Pedido pedido){
+    public void fazerPedido(Mesa mesa, Pedido pedido) {
         // Apenas o garçon responsável pela mesa poderá fazer pedidos
-        if (this.equals(mesa.getResponsavel())){
-            Pedido[] historico = mesa.getHistoricoPedidos();
-            int i = 0;
-            for(Pedido p : historico){
-                if (p == null){
-                    historico[i] = pedido;
-                    break;
-                }
-                i++;
-            }
-
+        if (mesa == null) {
+            System.out.println("Mesa vazia, pedido não realizado");
         } else {
-            System.out.println("Garçon não é o responsável pela mesa.");
+            if (this.equals(mesa.getResponsavel())) {
+                Pedido[] historico = mesa.getHistoricoPedidos();
+                int i = 0;
+                for (Pedido p : historico) {
+                    if (p == null) {
+                        historico[i] = pedido;
+                        break;
+                    }
+                    i++;
+                }
+
+            } else {
+                System.out.println("Garçon não é o responsável pela mesa.");
+            }
         }
     }
 
